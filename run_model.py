@@ -134,5 +134,7 @@ callbacks_list = [checkpoint]
 model.fit(x_train, y_train, validation_data=(x_val, y_val), nb_epoch=1, 
 			callbacks=callbacks_list, batch_size=128)
 
-
+# Saving the model file
+with open('click_bait.json', 'w') as f:
+    f.write(model.to_json())
 
