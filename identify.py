@@ -4,7 +4,7 @@ from flask import Flask
 
 app = Flask(__name__)
 
-@app.route('/')
+@app.route('/identify/')
 def hello_world():
     return 'Hello, World!'
 
@@ -14,5 +14,5 @@ def hello_world():
 #     clickbait_percent = predictor.predict(headline)
 #     return jsonify({'clickbait percent': clickbait_percent * 100})
 
-# if __name__ == "__main__":
-# 	app.run()
+if __name__ == "__main__":
+	app.run()
