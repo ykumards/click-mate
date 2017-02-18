@@ -2,9 +2,9 @@ from flask import Flask
 # from flask import Flask, jsonify, request
 # from detect import predictor
 
-app = Flask(__name__)
+application = Flask(__name__)
 
-@app.route('/identify/')
+@application.route('/identify/')
 def hello_world():
     return 'Hello, World!'
 
@@ -15,4 +15,4 @@ def hello_world():
 #     return jsonify({'clickbait percent': clickbait_percent * 100})
 
 if __name__ == "__main__":
-	app.run()
+	application.run()
