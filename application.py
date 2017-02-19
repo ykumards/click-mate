@@ -2,11 +2,13 @@ from flask import Flask
 # from flask import Flask, jsonify, request
 # from detect import predictor
 
+# print a nice greeting.
+def say_hello():
+    return "Hello World!"
+
 application = Flask(__name__)
 
-@application.route('/')
-def hello_world():
-    return 'Hello, World!'
+application.add_url_rule('/', 'index', say_hello)
 
 # @app.route('/identify', methods = ['GET'])
 # def identify():
