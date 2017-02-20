@@ -110,13 +110,13 @@ embedding_layer = Embedding(nb_words,
 model = Sequential()
 
 model.add(embedding_layer)
-model.add(Convolution1D(nb_filter=32, 
-                         filter_length=3,
-                         border_mode='valid',
-                         activation='relu'))
-model.add(MaxPooling1D(5))
+# model.add(Convolution1D(nb_filter=32, 
+#                          filter_length=3,
+#                          border_mode='valid',
+#                          activation='relu'))
+# model.add(MaxPooling1D(5))
 
-# CNN Layers
+# # CNN Layers
 # model.add(Convolution1D(32, 3))
 # model.add(Activation('relu'))
 # model.add(MaxPooling1D(5))
@@ -129,12 +129,12 @@ model.add(MaxPooling1D(5))
 #model.add(LSTM(70))
 
 # Bidirectional LSTM
-#model.add(Bidirectional(LSTM(32)))
+model.add(Bidirectional(LSTM(32)))
 
 model.add(Dropout(0.3))
-model.add(Flatten())
-model.add(Dense(32))
-model.add(Activation('relu'))
+#model.add(Flatten())
+#model.add(Dense(32))
+#model.add(Activation('relu'))
 model.add(Dense(2))
 model.add(Activation('softmax'))
 
