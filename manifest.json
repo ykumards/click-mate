@@ -28,6 +28,7 @@
     "js": ["facebook.js"],
     "matches": ["http://www.facebook.com/*",
     			"https://www.facebook.com/*"]
-  }]
+  }],
+  "web_accessible_resources": ["styles.css"]
  
 }
