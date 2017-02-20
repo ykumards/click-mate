@@ -26,7 +26,7 @@ EMBEDDING_DIM = 100
 
 class CheckBait(object):
 	def __init__(self, model_path):
-		model.load_model(model_path)
+		model = load_model(model_path)
 		self.model = model
 
 	def predict(self, title):
