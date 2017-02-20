@@ -12,10 +12,10 @@ import random
 from keras.preprocessing.text import Tokenizer
 from keras.preprocessing.sequence import pad_sequences
 from keras.utils.np_utils import to_categorical
-from keras.layers import Dense, Input, Flatten, Activation
-from keras.layers import Convolution1D, MaxPooling1D, Embedding
+from keras.layers import Dense, Input, Flatten, Activation, Dropout
+from keras.layers import Convolution1D, MaxPooling1D, Embedding, LSTM, Bidirectional
 from keras.models import Model, Sequential
-from keras.callbacks import ModelCheckpoint 
+from keras.callbacks import ModelCheckpoint, EarlyStopping 
 from keras.utils import np_utils
 
 MAX_SEQUENCE_LENGTH = 200
@@ -110,10 +110,13 @@ embedding_layer = Embedding(nb_words,
 model = Sequential()
 
 model.add(embedding_layer)
-model.add(Convolution1D(32, 3))
-model.add(Activation('relu'))
+model.add(Convolution1D(nb_filter=32, 
+                         filter_length=3,
+                         border_mode='valid',
+                         activation='relu'))
 model.add(MaxPooling1D(5))
 
+# CNN Layers
 # model.add(Convolution1D(32, 3))
 # model.add(Activation('relu'))
 # model.add(MaxPooling1D(5))
@@ -121,8 +124,14 @@ model.add(MaxPooling1D(5))
 # model.add(Convolution1D(32, 3))
 # model.add(Activation('relu'))
 # model.add(MaxPooling1D(5))
-# model.add(Dropout(0.25))
 
+#LSTM Layer
+#model.add(LSTM(70))
+
+# Bidirectional LSTM
+#model.add(Bidirectional(LSTM(32)))
+
+model.add(Dropout(0.3))
 model.add(Flatten())
 model.add(Dense(32))
 model.add(Activation('relu'))
@@ -130,7 +139,7 @@ model.add(Dense(2))
 model.add(Activation('softmax'))
 
 model.compile(loss='categorical_crossentropy',
-              optimizer='adam',
+              optimizer='adadelta',
               metrics=['acc'])
 
 # checkpoint
@@ -139,8 +148,8 @@ model.compile(loss='categorical_crossentropy',
 # callbacks_list = [checkpoint]
 
 # Fitting the model
-model.fit(x_train, y_train, validation_data=(x_val, y_val), nb_epoch=1, 
-    batch_size=32)
+model.fit(x_train, y_train, validation_data=(x_val, y_val), nb_epoch=20, 
+    callbacks=[EarlyStopping(monitor="val_loss", patience=2)], batch_size=128)
 
 model.save('./models/saved/cur.h5')
 
