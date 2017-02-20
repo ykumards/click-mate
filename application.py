@@ -14,7 +14,7 @@ application.add_url_rule('/', 'index', say_hello)
 # def identify():
 #     headline = request.args.get('headline', '')
 #     clickbait_percent = predictor.predict(headline)
-#     return jsonify({'clickbait percent': clickbait_percent * 100})
+#     return jsonify({'clickbait_percent': clickbait_percent * 100})
 
 if __name__ == "__main__":
 	application.run()
