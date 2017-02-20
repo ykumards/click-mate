@@ -40,6 +40,7 @@ class CheckBait(object):
 		return clickbait_prob
 
 checkbaitor = CheckBait("models/saved/current.h5")
+
 if __name__ == "__main__":
 	print ("headline is {0} % clickbaity".format(round(checkbaitor.predict(sys.argv[1]) * 100, 2)))
 
