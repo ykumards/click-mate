@@ -1,4 +1,4 @@
-data/glove*
+flask_app/data/glove*
 .ipynb_checkpoints/
 
 # Elastic Beanstalk Files
