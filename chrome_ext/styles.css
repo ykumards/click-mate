@@ -1,15 +1,31 @@
 <!DOCTYPE html>
 <html>
 <head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.2/jquery.min.js"></script>
 <style>
 
-div {
-  opacity: 0.25; /* See the text more clearly over the background */
+.curtain {
+  /*opacity: 0.1;   See the text more clearly over the background
+  filter: alpha(opacity=10)*/ 
+   /*background-color: red;*/
+   /*display: inline !important;*/
+   /*opacity: 0.1;*/
+   background-color: red;
+  /*position: relative;
+   background-color: red;
+   background-color: rgba(0, 188, 212, 0);*/
 }
 
-div {
-    opacity: 1.0;
-    filter: alpha(opacity=100); /* For IE8 and earlier */
+.curtain:hover {
+  opacity: 0.1;
+  background-color: red;
+  	/*position: absolute;
+  	top: 0;
+   left: 0;
+   right: 0;
+   bottom: 0;*/
+   /* opacity: 1.0;
+    filter: alpha(opacity=100);  For IE8 and earlier */
 }
 </style>
 </head>

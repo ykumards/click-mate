@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<style>
+
+div {
+  opacity: 0.25; /* See the text more clearly over the background */
+}
+
+div {
+    opacity: 1.0;
+    filter: alpha(opacity=100); /* For IE8 and earlier */
+}
+</style>
+</head>
+</html>

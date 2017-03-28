@@ -6,7 +6,7 @@
   "author": "Yogesh Kumar, Preeti Bhandari",
   "description": "A chrome app to identify clickbait",
   
-  "background": {"scripts": ["background.js"]},
+  "background": {"scripts": ["facebook.js"]},
   "browser_action": {
     "default_icon": "click_64.png",
     "default_title": "clickmate"
@@ -29,6 +29,7 @@
     "matches": ["http://www.facebook.com/*",
     			"https://www.facebook.com/*"]
   }],
+  "content_security_policy": "script-src 'self' https://ajax.googleapis.com; object-src 'self'",
   "web_accessible_resources": ["styles.css"]
  
 }
