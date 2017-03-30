@@ -1,5 +1,6 @@
 const facebook_clickbait = function(node) {
 	const blocks = [...node.getElementsByClassName('userContentWrapper _5pcr')]; 
+  // console.log(icon_url);
 
   //importing the sytle sheet
   var style = document.createElement('link');    
@@ -11,7 +12,6 @@ const facebook_clickbait = function(node) {
 
   var mark_clickbait = function(el, desc, headline_block) {
     var request = new XMLHttpRequest();
-    // var desc = el.innerText;
     var fbURL = location.href;
 
     request.onreadystatechange = function() {
@@ -21,8 +21,16 @@ const facebook_clickbait = function(node) {
         var clickbait =  result.clickbait_percent;
         if(clickbait > 70) {
           el.classList.add('curtain');
-          let html = "<ul style='position:relative;width:17%;height=100%;background-color:red;color:#fff'> Clickbait</ul>";
-          headline_block[0].insertAdjacentHTML('afterbegin', html);
+          var div = el.getElementsByClassName('_42nr');
+          var mate_button_span = document.createElement('span'); 
+          var mate_div = document.createElement('div');
+          mate_div.classList.add('matebutton');
+          var mate_button = document.createElement('button');
+          // mate_button.setAttribute("style", "position:absolute;float:right;width:40px;height=40px;background: url(icon_url);background-color:red;color:#fff");
+          // mate_button_span.appendChild(mate_button);
+          mate_div.appendChild(mate_button);
+          mate_button_span.appendChild(mate_div);
+          div[0].appendChild(mate_button_span);
         }
       }
     };
@@ -55,7 +63,7 @@ const observer = new MutationObserver(mutations => {
 });
 
 const config = { attributes: false, childList: true, characterData: false, subtree: true }
-
+const icon_url = chrome.extension.getURL('logo.png');
 observer.observe(document.body, config);
 
 facebook_clickbait(document.body);

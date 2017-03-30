@@ -14,7 +14,9 @@
 
   "icons": {
     "128": "click_128.png",
-    "32" : "click_32.png"
+    "64" : "click_64.png",
+    "32" : "click_32.png",
+    "16" : "click_16.png"
   },
 
   "permissions": [
