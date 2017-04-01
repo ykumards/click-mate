@@ -1,6 +1,5 @@
 const facebook_clickbait = function(node) {
 	const blocks = [...node.getElementsByClassName('userContentWrapper _5pcr')]; 
-  // console.log(icon_url);
 
   //importing the sytle sheet
   var style = document.createElement('link');    
@@ -15,28 +14,20 @@ const facebook_clickbait = function(node) {
     var fbURL = location.href;
 
     request.onreadystatechange = function() {
-      if (request.readyState == 4 && request.status == 200) {
-        var result = JSON.parse(request.responseText);
-        console.log(result);
-        var clickbait =  result.clickbait_percent;
-        if(clickbait > 70) {
-          el.classList.add('curtain');
-          var div = el.getElementsByClassName('_42nr');
-          var mate_button_span = document.createElement('span'); 
-          var mate_div = document.createElement('div');
-          mate_div.classList.add('matebutton');
-          var mate_button = document.createElement('button');
-          // mate_button.setAttribute("style", "position:absolute;float:right;width:40px;height=40px;background: url(icon_url);background-color:red;color:#fff");
-          // mate_button_span.appendChild(mate_button);
-          mate_div.appendChild(mate_button);
-          mate_button_span.appendChild(mate_div);
-          div[0].appendChild(mate_button_span);
+      if (request.readyState == 4) {
+        if (request.status == 200) {
+          var result = JSON.parse(request.responseText);
+          // console.log(result);
+          var clickbait =  result.clickbait_percent;
+          if(clickbait > 70) {
+            el.classList.add('curtain');
+          }
         }
       }
     };
 
-    console.log("sending request");
-    request.open("GET", "https://click-mate.herokuapp.com/?headline="+desc , true);
+    // console.log("sending request");
+    request.open("GET", "https://clickmate.herokuapp.com/?headline="+desc , true); //the problem is here
     request.send();
   }; 
 	
@@ -46,8 +37,10 @@ const facebook_clickbait = function(node) {
     
     var hl = headline_block.item(0)
     var headline = hl.innerText;
-    mark_clickbait(el, headline, headline_block);
-  }
+    var regex = new RegExp('/[^\x00-\x7F]/g');
+    var punctuationless = headline.replace(regex,"");
+    mark_clickbait(el, punctuationless, headline_block);
+  } 
 
   blocks.forEach(extract_headline_block);
 };
@@ -56,15 +49,13 @@ const facebook_clickbait = function(node) {
 const observer = new MutationObserver(mutations => {
   mutations.forEach(mutation => {
     mutation.addedNodes.forEach(node => {
-    if (node.nodeType === 1) { // ELEMENT_NODE
+    if (node.nodeType === 1) {
       facebook_clickbait(node);
     }});
   });
 });
 
 const config = { attributes: false, childList: true, characterData: false, subtree: true }
-const icon_url = chrome.extension.getURL('logo.png');
 observer.observe(document.body, config);
-
 facebook_clickbait(document.body);
 

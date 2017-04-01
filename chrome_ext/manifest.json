@@ -2,7 +2,7 @@
   "manifest_version": 2,
  
   "name": "Click-mate",
-  "version": "0.1.0",
+  "version": "1.0.0",
   "author": "Yogesh Kumar, Preeti Bhandari",
   "description": "A chrome app to identify clickbait",
   
@@ -22,7 +22,8 @@
   "permissions": [
     "http://www.facebook.com/*",
     "https://www.facebook.com/*",
-    "https://click-mate.com/*"
+    "https://click-mate.com/*",
+    "https://clickmate.herokuapp.com/*"
    ],
  
   "content_scripts": [{
