@@ -1,5 +1,5 @@
 const facebook_clickbait = function(node) {
-	const blocks = [...node.getElementsByClassName('userContentWrapper _5pcr')]; 
+	const blocks = [...node.getElementsByClassName('fbUserContent _5pcr')]; 
 
   //importing the sytle sheet
   var style = document.createElement('link');    
@@ -27,7 +27,7 @@ const facebook_clickbait = function(node) {
     };
 
     // console.log("sending request");
-    request.open("GET", "https://clickmate.herokuapp.com/?headline="+desc , true); //the problem is here
+    request.open("GET", "https://clickmate.herokuapp.com/?headline="+desc , true);
     request.send();
   }; 
 	
@@ -39,6 +39,7 @@ const facebook_clickbait = function(node) {
     var headline = hl.innerText;
     var regex = new RegExp('/[^\x00-\x7F]/g');
     var punctuationless = headline.replace(regex,"");
+    // console.log("found punct");
     mark_clickbait(el, punctuationless, headline_block);
   } 
 
